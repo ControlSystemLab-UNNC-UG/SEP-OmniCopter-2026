@@ -117,16 +117,14 @@ Replace the placeholder images below with real photos or thumbnails from our pla
   <br>
   <b>Hardware prototype photo</b>
   <br>
-  <sub></code></sub>
+  <sub>Suggested replacement: <code>assets/hardware_prototype.jpg</code></sub>
 </td>
 <td width="60%" align="center">
-  <a href="https://github.com/ControlSystemLab-UNNC-UG/SEP-OmniCopter-2026/blob/main/assets/bench_test_thumbnail.mp4">
-    <img src="assets/bench_test_placeholder.svg" alt="Bench test video — click to watch" width="100%">
-  </a>
+  <video src="assets/bench_test_thumbnail.mp4" controls width="100%">
+    Your browser does not support the video tag.
+  </video>
   <br>
   <b>Bench / tethered test video</b>
-  <br>
-  <sub>Click to watch on GitHub</sub>
 </td>
 </tr>
 </table>
@@ -339,13 +337,12 @@ We have already constructed a complete Omnicopter hardware platform and performe
 - [X] Built a complete Omnicopter hardware platform.
 - [X] Performed initial hardware-level tests.
 - [X] Prepared the platform for control-oriented experiments.
-- [X] Identified and validated the thrust/torque allocation matrix.
-- [X] Built a simulation model for controller validation.
-- [X] Implemented baseline controller (pseudo-inverse allocation + basic attitude/position loop).
-- [ ] Implement **LQR** controller for optimal 6-DoF state feedback tracking.
-- [ ] Implement **MPC** controller with actuator constraints and trajectory optimization.
-- [ ] Implement **Fault-Tolerant Control (FTC)** with fault diagnosis and actuator reallocation.
-- [ ] Validate all controllers with repeatable flight experiments.
+- [ ] Identify or refine the thrust/torque allocation matrix.
+- [ ] Build a simulation model for controller validation.
+- [ ] Implement constrained optimal allocation.
+- [ ] Add robust tracking controller.
+- [ ] Add fault diagnosis and fault-tolerant reallocation.
+- [ ] Validate with repeatable flight experiments.
 
 ### 🧪 Hardware test evidence to add
 
@@ -423,63 +420,41 @@ where $\mathbf{u}$ represents individual actuator thrust commands.
   <img src="assets/control_stack.svg" alt="Omnicopter control stack" width="100%">
 </p>
 
-This project lands on three major control directions, pursued in sequence after the baseline controller:
+This project lands on three major control directions:
 
-1. **LQR / Optimal Control** — optimal state-feedback and constraint-aware 6D wrench allocation.
-2. **MPC** — receding-horizon trajectory optimization respecting actuator saturation and rate limits.
-3. **Fault-Tolerant Control (FTC)** — detect degraded actuators or sensors, then reconfigure the allocator for safe recovery.
-
-> **Status:** the hardware platform and baseline controller are complete. Contributors are invited to work on LQR, MPC, and FTC in that order.
+1. **Optimal Control** — make the 6D motion and motor allocation efficient and constraint-aware.
+2. **Robust Control** — maintain stable tracking under modeling errors, disturbances, and aerodynamic coupling.
+3. **Fault Diagnosis / Fault-Tolerant Control** — detect degraded actuators or sensors and reconfigure the controller.
 
 ---
 
-## 🎯 1. LQR — Linear Quadratic Regulator *(Next milestone)*
+## 🎯 1. Optimal Control
 
-LQR is the first advanced controller to implement. It provides optimal state-feedback gains for the linearized 6-DoF rigid-body model, replacing the baseline PID/pseudo-inverse loop with a principled cost-minimizing design.
+Optimal control is used when we want the vehicle to satisfy motion goals while minimizing a cost and respecting constraints.
 
-### 🧪 LQR formulation
+For an Omnicopter, the most immediate optimal-control problem is **control allocation**:
 
-Linearize around a hover equilibrium and solve:
+> Given a desired 6D wrench, choose motor thrusts that generate it safely and efficiently.
 
-$$
-\min_{\mathbf{u}} \int_0^\infty \left( \mathbf{x}^\top Q \mathbf{x} + \mathbf{u}^\top R \mathbf{u} \right) dt
-$$
+### 🧩 Baseline allocation
 
-The resulting optimal state-feedback law is:
-
-$$
-\mathbf{u} = -K \mathbf{x}, \quad K = R^{-1} B^\top P
-$$
-
-where $P$ is the solution to the continuous algebraic Riccati equation (CARE).
-
-### 🔧 Implementation steps
-
-1. Derive or identify the linearized state-space model $(A, B)$ around hover.
-2. Choose weighting matrices $Q$ (state cost) and $R$ (control effort cost).
-3. Solve CARE to obtain gain matrix $K$.
-4. Combine with the constrained QP allocator to map $\mathbf{u}_{LQR}$ to motor commands.
-5. Validate in simulation; tune $Q$, $R$; then test on hardware.
-
-### 🧪 LQR experiments
-
-| Experiment                      | Metric                                            |
-| ------------------------------- | ------------------------------------------------- |
-| Step position response          | rise time, overshoot, settling time               |
-| Arbitrary-attitude hover        | position and attitude RMS error                   |
-| Disturbance rejection (impulse) | recovery time, max deviation                      |
-| $Q$/$R$ sensitivity sweep   | trade-off between tracking speed and motor effort |
-| LQR vs. baseline comparison     | tracking RMS, saturation count                    |
-
-### 💡 Baseline allocation (already implemented)
-
-The pseudo-inverse allocator
+A simple baseline is the pseudo-inverse allocator:
 
 $$
 \mathbf{u} = M^\dagger \mathbf{y}_{des}
 $$
 
-serves as the initial allocation layer that LQR wrench commands feed into. It can be upgraded to a constrained QP allocator:
+This is easy to implement, but it may fail when:
+
+- one or more motors saturate;
+- thrust commands require impossible reversal timing;
+- the desired wrench is outside the attainable wrench set;
+- a motor is degraded or failed;
+- we want to minimize energy, noise, heat, or current.
+
+### � Better allocation: constrained QP
+
+A more practical allocator can be written as a quadratic program:
 
 $$
 \begin{aligned}
@@ -494,43 +469,40 @@ $$
 \end{aligned}
 $$
 
+where:
+
+- $\|M\mathbf{u} - \mathbf{y}_{des}\|_Q^2$ tracks the desired wrench;
+- $\|\mathbf{u} - \mathbf{u}_{prev}\|^2$ discourages aggressive thrust changes;
+- $J_{rev}$ penalizes motor reversal;
+- $J_{energy}$ penalizes current / power consumption;
+- constraints enforce actuator limits.
+
+### 🧭 Optimal-control research questions
+
+- How can we allocate thrust while avoiding unnecessary motor reversal?
+- Can we use the null space of $M$ to minimize energy without changing the produced wrench?
+- How should force and torque tracking be weighted when full tracking is infeasible?
+- Can MPC improve arbitrary-attitude trajectory tracking compared with cascaded PID control?
+- How do ETH-style and Lynchpin-style geometries differ in attainable wrench space?
+
+### 🧪 Planned experiments
+
+| Experiment                   | Metric                                     |
+| ---------------------------- | ------------------------------------------ |
+| Static wrench tracking       | force/torque error                         |
+| Arbitrary-attitude hover     | position and attitude RMS error            |
+| Circular trajectory tracking | position error, motor usage                |
+| Motor reversal penalty test  | reversal count, tracking degradation       |
+| Energy-aware allocation      | current draw, flight time estimate         |
+| Geometry comparison          | condition number, attainable wrench radius |
+
 ---
 
-## � 2. MPC — Model Predictive Control
+## �️ 2. Robust Control
 
-After LQR is validated, MPC extends the design to handle explicit actuator constraints, rate limits, and trajectory-level optimization over a receding horizon.
+Robust control addresses the gap between the clean mathematical model and the real flying machine.
 
-### 🧪 MPC formulation
-
-$$
-\begin{aligned}
-\min_{\mathbf{u}_{0:N-1}} \quad & \sum_{k=0}^{N-1} \left( \|\mathbf{x}_k - \mathbf{x}_{ref,k}\|_Q^2 + \|\mathbf{u}_k\|_R^2 \right) + \|\mathbf{x}_N - \mathbf{x}_{ref,N}\|_{Q_f}^2 \\
-\text{s.t.} \quad & \mathbf{x}_{k+1} = A\mathbf{x}_k + B\mathbf{u}_k \\
-& \mathbf{u}_{min} \leq \mathbf{u}_k \leq \mathbf{u}_{max} \\
-& \Delta\mathbf{u}_{min} \leq \mathbf{u}_k - \mathbf{u}_{k-1} \leq \Delta\mathbf{u}_{max}
-\end{aligned}
-$$
-
-### 🔧 Implementation steps
-
-1. Discretize the linearized model $(A_d, B_d)$ at the chosen control rate.
-2. Set prediction horizon $N$ and tuning weights $Q$, $R$, $Q_f$.
-3. Implement the receding-horizon QP (e.g., using OSQP or a lightweight C solver).
-4. Compare closed-loop performance against LQR on identical trajectories.
-
-### 🧪 MPC experiments
-
-| Experiment                 | Metric                                  |
-| -------------------------- | --------------------------------------- |
-| Arbitrary-attitude hover   | position and attitude RMS error         |
-| Agile trajectory tracking  | tracking error, constraint violations   |
-| Motor saturation handling  | saturation count vs. LQR                |
-| Horizon length sensitivity | performance vs. computation time        |
-| MPC vs. LQR comparison     | tracking RMS, motor usage, compute load |
-
-### 🗨️ Robust extensions *(optional)*
-
-In the real platform, we must also expect:
+In the real platform, we must expect:
 
 - 🌬️ aerodynamic interference between rotors;
 - 📦 payload and center-of-mass changes;
@@ -576,7 +548,7 @@ flowchart LR
 
 ---
 
-## 🦯 3. FTC — Fault-Tolerant Control
+## � 3. Fault Diagnosis and Fault-Tolerant Control
 
 <p align="center">
   <img src="assets/fault_control.svg" alt="Fault diagnosis and fault-tolerant control" width="100%">
@@ -667,46 +639,39 @@ Then the allocator should avoid relying too much on motor 3 and redistribute the
 
 ## 🧪 Experiment Plan
 
-### ✅ Phase 1 — Safe hardware validation *(Complete)*
+### Phase 1 — Safe hardware validation
 
-- [X] Verify motor order and thrust directions.
-- [X] Confirm ESC 3D / bidirectional mode behavior.
-- [X] Check vibration, current draw, and thermal behavior.
-- [X] Record motor command, IMU data, and battery voltage.
+- Verify motor order and thrust directions.
+- Confirm ESC 3D / bidirectional mode behavior.
+- Check vibration, current draw, and thermal behavior.
+- Record motor command, RPM/current if available, IMU data, and battery voltage.
 
-### ✅ Phase 2 — Model identification *(Complete)*
+### Phase 2 — Model identification
 
-- [X] Measure geometry and build $M$.
-- [X] Estimate thrust coefficients.
-- [X] Identify actuator delay and reversal timing.
-- [X] Validate predicted acceleration against logs.
+- Measure geometry and build $M$.
+- Estimate thrust coefficients.
+- Identify actuator delay and reversal timing.
+- Validate predicted acceleration against logs.
 
-### ✅ Phase 3 — Baseline controller *(Complete)*
+### Phase 3 — Control allocation
 
-- [X] Implement pseudo-inverse allocation as baseline.
-- [X] Implement basic attitude and position control loop.
-- [X] Validate in simulation and bench tests.
+- Implement pseudo-inverse allocation as baseline.
+- Implement constrained QP allocation.
+- Add saturation and rate-limit handling.
+- Add reversal penalty and energy penalty.
 
-### 🔲 Phase 4 — LQR controller *(Next)*
+### Phase 4 — Robust control
 
-- [ ] Linearize the 6-DoF rigid-body model around hover.
-- [ ] Design LQR state-feedback gain for position and attitude tracking.
-- [ ] Integrate with constrained control allocation (QP).
-- [ ] Validate tracking performance in simulation and flight.
+- Add disturbance observer or robust feedback layer.
+- Test against payload shift and external disturbance.
+- Compare nominal controller vs. robust controller.
 
-### 🔲 Phase 5 — MPC controller
+### Phase 5 — Fault diagnosis and recovery
 
-- [ ] Formulate MPC with actuator saturation and rate constraints.
-- [ ] Implement receding-horizon trajectory optimization.
-- [ ] Compare tracking performance and motor usage against LQR baseline.
-- [ ] Test on arbitrary-attitude and agile trajectory references.
-
-### 🔲 Phase 6 — Fault-Tolerant Control (FTC)
-
-- [ ] Design residual generator for motor and sensor fault detection.
-- [ ] Inject software faults in simulation; validate detection thresholds.
-- [ ] Implement fault-aware reallocation (update $M$ and constraints online).
-- [ ] Validate degraded-but-stable flight in tethered and free-flight tests.
+- Design residual generator.
+- Inject software faults in simulation.
+- Validate detection thresholds.
+- Reconfigure allocation after detected faults.
 
 ---
 
@@ -800,9 +765,8 @@ Omnicopters are experimental aerial vehicles with bidirectional thrust. Treat ev
 - 🚁 An Omnicopter is a 6-DoF multirotor capable of generating force and torque in 3D.
 - 🧊 The ETH-style cubic design is a strong baseline because it is symmetric, over-actuated, and well connected to PX4 references.
 - 🟣 The Lynchpin-style design is a useful comparison because it emphasizes modular tangential geometry and independent position/orientation control.
-- 🛠️ The hardware platform and baseline controller (pseudo-inverse allocation + basic attitude/position loop) are complete and validated.
-- 🎯 The next development milestones are **LQR** → **MPC** → **FTC**, in that order.
-- 🤝 Contributors are welcome to pick up any of these three controllers — see the Experiment Plan for detailed implementation steps.
+- 🛠️ Our hardware platform has already been built and tested, making this project suitable for real control experiments.
+- 🎯 The main research value is not only flying the vehicle, but building a pipeline for optimal, robust, and fault-aware control.
 
 ---
 
