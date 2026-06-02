@@ -120,7 +120,7 @@ Replace the placeholder images below with real photos or thumbnails from our pla
   <sub>Suggested replacement: <code>assets/hardware_prototype.jpg</code></sub>
 </td>
 <td width="60%" align="center">
-  <video src="assets/bench_test_thumbnail.mp4" controls width="100%">
+  <video src="[assets/bench_test_thumbnail.mp4](https://github.com/user-attachments/assets/a455ae47-7dc0-4252-b18c-a605029e0eb2)" controls width="100%">
     Your browser does not support the video tag.
   </video>
   <br>
