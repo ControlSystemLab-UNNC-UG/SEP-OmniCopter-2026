@@ -45,12 +45,12 @@ An Omnicopter is not just “a drone with more propellers”. It is a **fully-ac
 
 ## ✨ Project at a Glance
 
-| Item | Description |
-|---|---|
-| 🛩️ Vehicle type | Omnidirectional / fully-actuated multirotor UAV |
-| 🎯 Research target | Optimal allocation, robust 6-DoF tracking, actuator/sensor fault diagnosis |
-| 🧱 Hardware status | A complete Omnicopter hardware platform has been constructed and tested |
-| 🧠 Core challenge | Convert a desired 6D wrench into safe, efficient, and fault-aware motor commands |
+| Item               | Description                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------ |
+| 🛩️ Vehicle type  | Omnidirectional / fully-actuated multirotor UAV                                            |
+| 🎯 Research target | Optimal allocation, robust 6-DoF tracking, actuator/sensor fault diagnosis                 |
+| 🧱 Hardware status | A complete Omnicopter hardware platform has been constructed and tested                    |
+| 🧠 Core challenge  | Convert a desired 6D wrench into safe, efficient, and fault-aware motor commands           |
 | 🧪 Validation path | Bench tests → simulation → tethered flight → free flight → fault-injection experiments |
 
 <p align="center">
@@ -112,19 +112,19 @@ Replace the placeholder images below with real photos or thumbnails from our pla
 
 <table>
 <tr>
-<td width="50%" align="center">
-  <img src="assets/hardware_prototype_placeholder.svg" alt="Our Omnicopter hardware prototype" width="100%">
+<td width="40%" align="center">
+  <img src="assets/hardware_prototype.jpg" alt="Our Omnicopter hardware prototype" width="100%">
   <br>
   <b>Hardware prototype photo</b>
   <br>
-  <sub>Suggested replacement: <code>assets/hardware_prototype.jpg</code></sub>
+  <sub></code></sub>
 </td>
-<td width="50%" align="center">
+<td width="60%" align="center">
   <video src="assets/bench_test_thumbnail.mp4" controls width="100%">
     Your browser does not support the video tag.
   </video>
   <br>
-  <b>Bench / tethered test video</b>
+  <b></b>
 </td>
 </tr>
 </table>
@@ -172,15 +172,15 @@ where $\mathbf{p}_i$ is the rotor position relative to the center of mass and $\
 
 ### 🧩 Conventional multirotor vs. Omnicopter
 
-| Capability | Conventional quad / octocopter | Omnicopter |
-|---|---:|---:|
-| Move up/down without tilting | ✅ | ✅ |
-| Move sideways without tilting | ❌ | ✅ |
-| Hover at arbitrary attitude | ❌ | ✅, within actuator limits |
-| Independently command 3D force | ❌ | ✅ |
-| Independently command 3D torque | Mostly limited | ✅ |
-| Actuator redundancy for fault recovery | Limited | Stronger, depending on configuration |
-| Control difficulty | Medium | High |
+| Capability                             | Conventional quad / octocopter |                           Omnicopter |
+| -------------------------------------- | -----------------------------: | -----------------------------------: |
+| Move up/down without tilting           |                             ✅ |                                   ✅ |
+| Move sideways without tilting          |                             ❌ |                                   ✅ |
+| Hover at arbitrary attitude            |                             ❌ |           ✅, within actuator limits |
+| Independently command 3D force         |                             ❌ |                                   ✅ |
+| Independently command 3D torque        |                 Mostly limited |                                   ✅ |
+| Actuator redundancy for fault recovery |                        Limited | Stronger, depending on configuration |
+| Control difficulty                     |                         Medium |                                 High |
 
 ---
 
@@ -233,13 +233,13 @@ The ETH-style Omnicopter is one of the most important reference designs for this
 
 The ETH configuration follows several key ideas:
 
-| Design idea | Why it matters |
-|---|---|
-| 🧊 Symmetric 3D frame | Makes the vehicle dynamics closer to orientation-invariant |
-| 🌀 Tilted thrust axes | Allows force generation beyond the body vertical direction |
-| 🔁 Reversible motor-propeller actuators | Allows positive and negative thrust along each rotor axis |
-| 🎛️ Over-actuation | More actuators than 6D wrench dimensions creates redundancy |
-| 🧮 Control allocation | Converts desired force/torque into individual motor commands |
+| Design idea                             | Why it matters                                               |
+| --------------------------------------- | ------------------------------------------------------------ |
+| 🧊 Symmetric 3D frame                   | Makes the vehicle dynamics closer to orientation-invariant   |
+| 🌀 Tilted thrust axes                   | Allows force generation beyond the body vertical direction   |
+| 🔁 Reversible motor-propeller actuators | Allows positive and negative thrust along each rotor axis    |
+| 🎛️ Over-actuation                     | More actuators than 6D wrench dimensions creates redundancy  |
+| 🧮 Control allocation                   | Converts desired force/torque into individual motor commands |
 
 ### ✅ Advantages
 
@@ -287,12 +287,12 @@ The Lynchpin contest requirement can be summarized as:
 
 ### 🧠 Lynchpin design logic
 
-| Design idea | Why it matters |
-|---|---|
-| 🧬 Modular geometry | Supports repeated geometric units and possible multi-drone / structure ideas |
-| 🧭 Tangential thrust layout | Produces forces around a 3D shell rather than only along one body axis |
-| 🔄 Independent position and orientation control | The pilot/controller should command position and attitude separately |
-| 🛠️ Hobby-grade feasibility | Demonstrations have used common multirotor components and open autopilot stacks |
+| Design idea                                     | Why it matters                                                                  |
+| ----------------------------------------------- | ------------------------------------------------------------------------------- |
+| 🧬 Modular geometry                             | Supports repeated geometric units and possible multi-drone / structure ideas    |
+| 🧭 Tangential thrust layout                     | Produces forces around a 3D shell rather than only along one body axis          |
+| 🔄 Independent position and orientation control | The pilot/controller should command position and attitude separately            |
+| 🛠️ Hobby-grade feasibility                    | Demonstrations have used common multirotor components and open autopilot stacks |
 
 ### ✅ Advantages
 
@@ -332,14 +332,14 @@ We have already constructed a complete Omnicopter hardware platform and performe
 
 ### ✅ Current progress
 
-- [x] Reviewed ETH Omnicopter and Lynchpin-style design references.
-- [x] Selected a feasible Omnicopter hardware configuration for research use.
-- [x] Built a complete Omnicopter hardware platform.
-- [x] Performed initial hardware-level tests.
-- [x] Prepared the platform for control-oriented experiments.
-- [x] Identified and validated the thrust/torque allocation matrix.
-- [x] Built a simulation model for controller validation.
-- [x] Implemented baseline controller (pseudo-inverse allocation + basic attitude/position loop).
+- [X] Reviewed ETH Omnicopter and Lynchpin-style design references.
+- [X] Selected a feasible Omnicopter hardware configuration for research use.
+- [X] Built a complete Omnicopter hardware platform.
+- [X] Performed initial hardware-level tests.
+- [X] Prepared the platform for control-oriented experiments.
+- [X] Identified and validated the thrust/torque allocation matrix.
+- [X] Built a simulation model for controller validation.
+- [X] Implemented baseline controller (pseudo-inverse allocation + basic attitude/position loop).
 - [ ] Implement **LQR** controller for optimal 6-DoF state feedback tracking.
 - [ ] Implement **MPC** controller with actuator constraints and trajectory optimization.
 - [ ] Implement **Fault-Tolerant Control (FTC)** with fault diagnosis and actuator reallocation.
@@ -347,14 +347,14 @@ We have already constructed a complete Omnicopter hardware platform and performe
 
 ### 🧪 Hardware test evidence to add
 
-| Evidence | Suggested file path | README insertion |
-|---|---|---|
-| Prototype overview photo | `assets/hardware_prototype.jpg` | Replace the placeholder in the media section |
-| Wiring / ESC close-up | `assets/wiring_closeup.jpg` | Add below this table |
-| Motor direction test | `assets/motor_test_thumbnail.jpg` | Link to video attachment or YouTube |
-| Bench thrust test plot | `assets/thrust_test_plot.png` | Add in the modeling section |
-| Tethered flight video | `assets/tethered_test_thumbnail.jpg` | Link to GitHub user-attachment video |
-| Flight log plot | `assets/log_position_attitude.png` | Add in the experiment section |
+| Evidence                 | Suggested file path                    | README insertion                             |
+| ------------------------ | -------------------------------------- | -------------------------------------------- |
+| Prototype overview photo | `assets/hardware_prototype.jpg`      | Replace the placeholder in the media section |
+| Wiring / ESC close-up    | `assets/wiring_closeup.jpg`          | Add below this table                         |
+| Motor direction test     | `assets/motor_test_thumbnail.jpg`    | Link to video attachment or YouTube          |
+| Bench thrust test plot   | `assets/thrust_test_plot.png`        | Add in the modeling section                  |
+| Tethered flight video    | `assets/tethered_test_thumbnail.jpg` | Link to GitHub user-attachment video         |
+| Flight log plot          | `assets/log_position_attitude.png`   | Add in the experiment section                |
 
 Example for adding our own video thumbnail:
 
@@ -380,16 +380,16 @@ where $\mathbf{u}$ represents individual actuator thrust commands.
 
 ### 🔍 What we need to identify
 
-| Model item | Why we need it |
-|---|---|
-| Rotor position $\mathbf{p}_i$ | Determines torque from off-center thrust |
-| Rotor axis $\mathbf{x}_i$ | Determines the direction of generated force |
-| Thrust coefficient | Maps command / RPM to thrust |
-| Drag torque coefficient | Improves yaw and torque prediction |
-| Motor reversal delay | Important for bidirectional thrust allocation |
-| Saturation limits | Required for feasible optimal control |
-| Rate limits | Prevents unrealistic thrust changes |
-| Aerodynamic interference | Important for robust control and compensation |
+| Model item                     | Why we need it                                |
+| ------------------------------ | --------------------------------------------- |
+| Rotor position$\mathbf{p}_i$ | Determines torque from off-center thrust      |
+| Rotor axis$\mathbf{x}_i$     | Determines the direction of generated force   |
+| Thrust coefficient             | Maps command / RPM to thrust                  |
+| Drag torque coefficient        | Improves yaw and torque prediction            |
+| Motor reversal delay           | Important for bidirectional thrust allocation |
+| Saturation limits              | Required for feasible optimal control         |
+| Rate limits                    | Prevents unrealistic thrust changes           |
+| Aerodynamic interference       | Important for robust control and compensation |
 
 ### 🧪 Suggested identification workflow
 
@@ -461,13 +461,13 @@ where $P$ is the solution to the continuous algebraic Riccati equation (CARE).
 
 ### 🧪 LQR experiments
 
-| Experiment | Metric |
-|---|---|
-| Step position response | rise time, overshoot, settling time |
-| Arbitrary-attitude hover | position and attitude RMS error |
-| Disturbance rejection (impulse) | recovery time, max deviation |
-| $Q$/$R$ sensitivity sweep | trade-off between tracking speed and motor effort |
-| LQR vs. baseline comparison | tracking RMS, saturation count |
+| Experiment                      | Metric                                            |
+| ------------------------------- | ------------------------------------------------- |
+| Step position response          | rise time, overshoot, settling time               |
+| Arbitrary-attitude hover        | position and attitude RMS error                   |
+| Disturbance rejection (impulse) | recovery time, max deviation                      |
+| $Q$/$R$ sensitivity sweep   | trade-off between tracking speed and motor effort |
+| LQR vs. baseline comparison     | tracking RMS, saturation count                    |
 
 ### 💡 Baseline allocation (already implemented)
 
@@ -518,13 +518,13 @@ $$
 
 ### 🧪 MPC experiments
 
-| Experiment | Metric |
-|---|---|
-| Arbitrary-attitude hover | position and attitude RMS error |
-| Agile trajectory tracking | tracking error, constraint violations |
-| Motor saturation handling | saturation count vs. LQR |
-| Horizon length sensitivity | performance vs. computation time |
-| MPC vs. LQR comparison | tracking RMS, motor usage, compute load |
+| Experiment                 | Metric                                  |
+| -------------------------- | --------------------------------------- |
+| Arbitrary-attitude hover   | position and attitude RMS error         |
+| Agile trajectory tracking  | tracking error, constraint violations   |
+| Motor saturation handling  | saturation count vs. LQR                |
+| Horizon length sensitivity | performance vs. computation time        |
+| MPC vs. LQR comparison     | tracking RMS, motor usage, compute load |
 
 ### 🗨️ Robust extensions *(optional)*
 
@@ -553,24 +553,24 @@ flowchart LR
 
 ### 🔧 Methods we can investigate
 
-| Method | Role in this project |
-|---|---|
-| Disturbance observer | Estimate unmodeled force/torque disturbance |
-| Tube MPC | Keep trajectory tracking stable under bounded uncertainty |
-| Sliding-mode control | Improve robustness to matched disturbances |
-| $H_\infty$ control | Design for worst-case disturbance attenuation |
-| Adaptive control | Update uncertain parameters online |
-| Learning compensation | Learn repeatable aerodynamic coupling from logs |
+| Method                | Role in this project                                      |
+| --------------------- | --------------------------------------------------------- |
+| Disturbance observer  | Estimate unmodeled force/torque disturbance               |
+| Tube MPC              | Keep trajectory tracking stable under bounded uncertainty |
+| Sliding-mode control  | Improve robustness to matched disturbances                |
+| $H_\infty$ control  | Design for worst-case disturbance attenuation             |
+| Adaptive control      | Update uncertain parameters online                        |
+| Learning compensation | Learn repeatable aerodynamic coupling from logs           |
 
 ### 🧪 Robust-control experiments
 
-| Experiment | What we learn |
-|---|---|
-| Payload shift test | sensitivity to center-of-mass error |
-| Fan disturbance test | disturbance rejection capability |
-| Thrust coefficient mismatch | model-error tolerance |
-| Aggressive attitude transition | coupling between translation and rotation |
-| Repeated trajectory learning | whether systematic errors can be compensated |
+| Experiment                     | What we learn                                |
+| ------------------------------ | -------------------------------------------- |
+| Payload shift test             | sensitivity to center-of-mass error          |
+| Fan disturbance test           | disturbance rejection capability             |
+| Thrust coefficient mismatch    | model-error tolerance                        |
+| Aggressive attitude transition | coupling between translation and rotation    |
+| Repeated trajectory learning   | whether systematic errors can be compensated |
 
 ---
 
@@ -584,15 +584,15 @@ Fault control is the final landing point of this project. Because an Omnicopter 
 
 ### ⚠️ Faults we care about
 
-| Fault type | Example | Expected symptom |
-|---|---|---|
-| Motor loss of effectiveness | motor produces only 70% thrust | acceleration smaller than predicted |
-| ESC reversal failure | motor cannot switch direction reliably | large transient error near zero thrust |
-| Propeller damage | reduced thrust or increased vibration | residual bias + vibration signature |
-| Motor saturation | command exceeds physical limit | wrench tracking error |
-| IMU bias | wrong acceleration / attitude estimate | persistent state-estimation residual |
-| Magnetometer disturbance | yaw drift | heading residual |
-| Battery voltage sag | reduced maximum thrust | growing saturation under load |
+| Fault type                  | Example                                | Expected symptom                       |
+| --------------------------- | -------------------------------------- | -------------------------------------- |
+| Motor loss of effectiveness | motor produces only 70% thrust         | acceleration smaller than predicted    |
+| ESC reversal failure        | motor cannot switch direction reliably | large transient error near zero thrust |
+| Propeller damage            | reduced thrust or increased vibration  | residual bias + vibration signature    |
+| Motor saturation            | command exceeds physical limit         | wrench tracking error                  |
+| IMU bias                    | wrong acceleration / attitude estimate | persistent state-estimation residual   |
+| Magnetometer disturbance    | yaw drift                              | heading residual                       |
+| Battery voltage sag         | reduced maximum thrust                 | growing saturation under load          |
 
 ### 🔍 Fault diagnosis idea
 
@@ -653,13 +653,13 @@ Then the allocator should avoid relying too much on motor 3 and redistribute the
 
 ### 🧪 Fault-control experiments
 
-| Stage | Experiment | Safety level |
-|---|---|---|
-| Simulation | inject motor scaling faults | safe |
-| Bench test | command-limited motor degradation | safe |
-| Tethered flight | reduced authority on one motor | medium |
-| Free flight | mild degradation with recovery | high caution |
-| Comparative study | ETH vs Lynchpin fault tolerance | analysis + simulation first |
+| Stage             | Experiment                        | Safety level                |
+| ----------------- | --------------------------------- | --------------------------- |
+| Simulation        | inject motor scaling faults       | safe                        |
+| Bench test        | command-limited motor degradation | safe                        |
+| Tethered flight   | reduced authority on one motor    | medium                      |
+| Free flight       | mild degradation with recovery    | high caution                |
+| Comparative study | ETH vs Lynchpin fault tolerance   | analysis + simulation first |
 
 ---
 
@@ -667,23 +667,23 @@ Then the allocator should avoid relying too much on motor 3 and redistribute the
 
 ### ✅ Phase 1 — Safe hardware validation *(Complete)*
 
-- [x] Verify motor order and thrust directions.
-- [x] Confirm ESC 3D / bidirectional mode behavior.
-- [x] Check vibration, current draw, and thermal behavior.
-- [x] Record motor command, IMU data, and battery voltage.
+- [X] Verify motor order and thrust directions.
+- [X] Confirm ESC 3D / bidirectional mode behavior.
+- [X] Check vibration, current draw, and thermal behavior.
+- [X] Record motor command, IMU data, and battery voltage.
 
 ### ✅ Phase 2 — Model identification *(Complete)*
 
-- [x] Measure geometry and build $M$.
-- [x] Estimate thrust coefficients.
-- [x] Identify actuator delay and reversal timing.
-- [x] Validate predicted acceleration against logs.
+- [X] Measure geometry and build $M$.
+- [X] Estimate thrust coefficients.
+- [X] Identify actuator delay and reversal timing.
+- [X] Validate predicted acceleration against logs.
 
 ### ✅ Phase 3 — Baseline controller *(Complete)*
 
-- [x] Implement pseudo-inverse allocation as baseline.
-- [x] Implement basic attitude and position control loop.
-- [x] Validate in simulation and bench tests.
+- [X] Implement pseudo-inverse allocation as baseline.
+- [X] Implement basic attitude and position control loop.
+- [X] Validate in simulation and bench tests.
 
 ### 🔲 Phase 4 — LQR controller *(Next)*
 
@@ -781,15 +781,15 @@ Omnicopters are experimental aerial vehicles with bidirectional thrust. Treat ev
 
 ## 📊 Evaluation Metrics
 
-| Category | Metric |
-|---|---|
-| Tracking | position RMS error, attitude RMS error, max error |
-| Allocation | wrench error, saturation count, reversal count |
-| Efficiency | average current, estimated power, thermal load |
-| Robustness | disturbance rejection time, overshoot, steady-state error |
-| Fault diagnosis | detection delay, false positive rate, isolation accuracy |
-| Fault tolerance | stable recovery time, residual tracking performance |
-| Safety | number of aborted tests, failsafe trigger correctness |
+| Category        | Metric                                                    |
+| --------------- | --------------------------------------------------------- |
+| Tracking        | position RMS error, attitude RMS error, max error         |
+| Allocation      | wrench error, saturation count, reversal count            |
+| Efficiency      | average current, estimated power, thermal load            |
+| Robustness      | disturbance rejection time, overshoot, steady-state error |
+| Fault diagnosis | detection delay, false positive rate, isolation accuracy  |
+| Fault tolerance | stable recovery time, residual tracking performance       |
+| Safety          | number of aborted tests, failsafe trigger correctness     |
 
 ---
 
@@ -809,24 +809,18 @@ Omnicopters are experimental aerial vehicles with bidirectional thrust. Treat ev
 ### Papers and technical sources
 
 1. **D. Brescianini and R. D'Andrea**, “Design, Modeling and Control of an Omni-Directional Aerial Vehicle,” *IEEE International Conference on Robotics and Automation (ICRA)*, 2016.
-2. **PX4 Documentation — Omnicopter Build Guide**  
-   https://docs.px4.io/main/en/frames_multicopter/omnicopter
-3. **PX4 Documentation — Control Allocation**  
-   https://docs.px4.io/main/en/concept/control_allocation
-4. **Terry's Lynchpins — Lynchpin Drone Contest**  
-   https://www.terryslynchpins.com/contest
-5. **Awesome Tech Designs — Omnicopter taxonomy and examples**  
+2. **PX4 Documentation — Omnicopter Build Guide**https://docs.px4.io/main/en/frames_multicopter/omnicopter
+3. **PX4 Documentation — Control Allocation**https://docs.px4.io/main/en/concept/control_allocation
+4. **Terry's Lynchpins — Lynchpin Drone Contest**https://www.terryslynchpins.com/contest
+5. **Awesome Tech Designs — Omnicopter taxonomy and examples**
    https://github.com/bpodchezertsev/awesome-tech-designs/blob/main/Omnicopter.md
 
 ### Videos
 
-1. **PX4 Based Omnicopter Using the New Dynamic Control Allocation**  
-   https://www.youtube.com/watch?v=nsPkQYugfzs
-2. **ArduCopter 6DoF — OmniCopter — outside (Lynchpin)**  
-   https://www.youtube.com/watch?v=0p9jmrf1eFM
-3. **The Omnicopter — ETH Zurich**  
-   https://www.youtube.com/watch?v=sIi80LMLJSY
-4. **Fetching Omnicopter**  
+1. **PX4 Based Omnicopter Using the New Dynamic Control Allocation**https://www.youtube.com/watch?v=nsPkQYugfzs
+2. **ArduCopter 6DoF — OmniCopter — outside (Lynchpin)**https://www.youtube.com/watch?v=0p9jmrf1eFM
+3. **The Omnicopter — ETH Zurich**https://www.youtube.com/watch?v=sIi80LMLJSY
+4. **Fetching Omnicopter**
    https://www.youtube.com/watch?v=0gR1ekapOAE
 
 ---
