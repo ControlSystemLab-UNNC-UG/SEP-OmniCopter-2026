@@ -120,11 +120,13 @@ Replace the placeholder images below with real photos or thumbnails from our pla
   <sub></code></sub>
 </td>
 <td width="60%" align="center">
-  <video src="assets/bench_test_thumbnail.mp4" controls width="100%">
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://github.com/ControlSystemLab-UNNC-UG/SEP-OmniCopter-2026/blob/main/assets/bench_test_thumbnail.mp4">
+    <img src="assets/bench_test_placeholder.svg" alt="Bench test video — click to watch" width="100%">
+  </a>
   <br>
-  <b></b>
+  <b>Bench / tethered test video</b>
+  <br>
+  <sub>Click to watch on GitHub</sub>
 </td>
 </tr>
 </table>
