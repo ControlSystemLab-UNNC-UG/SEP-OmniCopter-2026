@@ -1,0 +1,29 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="520"><stop stop-color="#08111f"/><stop offset="1" stop-color="#152f3a"/></linearGradient>
+    <style>.h{font:800 36px Inter,Arial;fill:#f5fbff}.p{font:500 18px Inter,Arial;fill:#b9d8ee}.node{fill:#ffffff;opacity:.1;stroke:#7fffd4;stroke-width:2}.done{fill:#7fffd4;opacity:.92}.next{fill:#ffcf5a;opacity:.92}.todo{fill:#ffffff;opacity:.12;stroke:#8ed8ff;stroke-width:2}.t{font:800 18px Inter,Arial;fill:#f7fbff}.dark{font:800 18px Inter,Arial;fill:#08111f}.s{font:500 14px Inter,Arial;fill:#c8eaff}.sd{font:600 14px Inter,Arial;fill:#08111f}.line{stroke:#8ed8ff;stroke-width:5;stroke-linecap:round}.small{font:600 13px Inter,Arial;fill:#caeaff}</style>
+  </defs>
+  <rect width="1200" height="520" rx="28" fill="url(#bg)"/>
+  <text x="46" y="64" class="h">Project roadmap</text>
+  <text x="46" y="96" class="p">Current status: hardware platform built and initial tests completed; next focus is model-based control research.</text>
+  <line x1="115" y1="260" x2="1085" y2="260" class="line" opacity=".55"/>
+  <g transform="translate(70 170)">
+    <circle cx="50" cy="90" r="48" class="done"/><text x="28" y="96" class="dark">01</text><text x="0" y="165" class="t">Literature</text><text x="0" y="188" class="s">ETH + PX4 + Lynchpin</text>
+  </g>
+  <g transform="translate(245 170)">
+    <circle cx="50" cy="90" r="48" class="done"/><text x="28" y="96" class="dark">02</text><text x="0" y="165" class="t">Hardware</text><text x="0" y="188" class="s">frame, motors, ESCs</text>
+  </g>
+  <g transform="translate(420 170)">
+    <circle cx="50" cy="90" r="48" class="done"/><text x="28" y="96" class="dark">03</text><text x="0" y="165" class="t">Testing</text><text x="0" y="188" class="s">wiring, thrust, logs</text>
+  </g>
+  <g transform="translate(595 170)">
+    <circle cx="50" cy="90" r="48" class="next"/><text x="28" y="96" class="dark">04</text><text x="0" y="165" class="t">Modeling</text><text x="0" y="188" class="s">wrench map + limits</text>
+  </g>
+  <g transform="translate(770 170)">
+    <circle cx="50" cy="90" r="48" class="todo"/><text x="28" y="96" class="t">05</text><text x="0" y="165" class="t">Control</text><text x="0" y="188" class="s">optimal + robust</text>
+  </g>
+  <g transform="translate(945 170)">
+    <circle cx="50" cy="90" r="48" class="todo"/><text x="28" y="96" class="t">06</text><text x="0" y="165" class="t">Faults</text><text x="0" y="188" class="s">FDI + recovery</text>
+  </g>
+  <text x="46" y="450" class="small">Evidence slots in the README show where to add hardware photos, bench-test clips, flight-test videos and plots.</text>
+</svg>

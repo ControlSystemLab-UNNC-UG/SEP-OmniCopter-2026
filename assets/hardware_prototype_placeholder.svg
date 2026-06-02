@@ -1,0 +1,8 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1200" y2="675"><stop stop-color="#101828"/><stop offset="1" stop-color="#243b53"/></linearGradient><style>.h{font:800 42px Inter,Arial;fill:#f5fbff}.p{font:500 22px Inter,Arial;fill:#c5d8e8}.box{fill:#fff;opacity:.08;stroke:#8ed8ff;stroke-width:3;stroke-dasharray:12 12}.small{font:600 18px Inter,Arial;fill:#bddff5}</style></defs>
+  <rect width="1200" height="675" rx="28" fill="url(#bg)"/>
+  <rect x="85" y="85" width="1030" height="505" rx="32" class="box"/>
+  <text x="145" y="300" class="h">Add your hardware photo here</text>
+  <text x="145" y="350" class="p">Replace this file with: assets/hardware_prototype.jpg</text>
+  <text x="145" y="394" class="small">Suggested image: top-view or 45-degree view of the completed Omnicopter platform.</text>
+</svg>

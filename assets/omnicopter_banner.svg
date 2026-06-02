@@ -1,0 +1,81 @@
+<svg width="1400" height="420" viewBox="0 0 1400 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.45" stop-color="#10243a"/>
+      <stop offset="1" stop-color="#28153f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(760 190) rotate(90) scale(270 470)">
+      <stop stop-color="#62d6ff" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#62d6ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <style>
+      .title{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:800;font-size:58px;fill:#f7fbff;letter-spacing:-1px}
+      .sub{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:500;font-size:23px;fill:#b9d8ee}
+      .tag{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:700;font-size:19px;fill:#0b1424}
+      .small{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:600;font-size:16px;fill:#c8e9ff}
+      .axis{stroke:#7fffd4;stroke-width:3;stroke-linecap:round;opacity:.9}
+      .wire{stroke:#73a7ff;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.95}
+      .thrust{stroke:#ffcf5a;stroke-width:4;stroke-linecap:round;marker-end:url(#arrow)}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#ffcf5a"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="420" fill="url(#bg)"/>
+  <rect width="1400" height="420" fill="url(#glow)"/>
+  <g opacity="0.12">
+    <path d="M0 330 C220 250 330 390 520 310 S860 180 1100 260 S1290 340 1400 290" stroke="#b7f5ff" stroke-width="2"/>
+    <path d="M0 84 C210 140 350 20 560 88 S870 210 1110 110 S1280 40 1400 90" stroke="#b7f5ff" stroke-width="2"/>
+  </g>
+  <g transform="translate(790 70)">
+    <circle cx="170" cy="140" r="112" fill="#0f2338" stroke="#9cdfff" stroke-width="2" opacity="0.95"/>
+    <circle cx="170" cy="140" r="162" stroke="#44d7ff" stroke-width="2" opacity="0.16"/>
+    <line x1="85" y1="75" x2="255" y2="75" class="wire"/>
+    <line x1="85" y1="205" x2="255" y2="205" class="wire"/>
+    <line x1="85" y1="75" x2="85" y2="205" class="wire"/>
+    <line x1="255" y1="75" x2="255" y2="205" class="wire"/>
+    <line x1="130" y1="45" x2="300" y2="45" class="wire" opacity=".6"/>
+    <line x1="300" y1="45" x2="255" y2="75" class="wire" opacity=".6"/>
+    <line x1="130" y1="45" x2="85" y2="75" class="wire" opacity=".6"/>
+    <line x1="130" y1="175" x2="300" y2="175" class="wire" opacity=".6"/>
+    <line x1="130" y1="45" x2="130" y2="175" class="wire" opacity=".6"/>
+    <line x1="300" y1="45" x2="300" y2="175" class="wire" opacity=".6"/>
+    <line x1="130" y1="175" x2="85" y2="205" class="wire" opacity=".6"/>
+    <line x1="300" y1="175" x2="255" y2="205" class="wire" opacity=".6"/>
+    <g fill="#e8f9ff" stroke="#0b1424" stroke-width="4">
+      <circle cx="85" cy="75" r="24"/><circle cx="255" cy="75" r="24"/>
+      <circle cx="85" cy="205" r="24"/><circle cx="255" cy="205" r="24"/>
+      <circle cx="130" cy="45" r="20"/><circle cx="300" cy="45" r="20"/>
+      <circle cx="130" cy="175" r="20"/><circle cx="300" cy="175" r="20"/>
+    </g>
+    <line x1="85" y1="75" x2="40" y2="35" class="thrust"/>
+    <line x1="255" y1="75" x2="315" y2="35" class="thrust"/>
+    <line x1="85" y1="205" x2="35" y2="250" class="thrust"/>
+    <line x1="255" y1="205" x2="315" y2="255" class="thrust"/>
+    <line x1="170" y1="140" x2="170" y2="40" class="axis"/>
+    <line x1="170" y1="140" x2="260" y2="140" class="axis"/>
+    <line x1="170" y1="140" x2="115" y2="198" class="axis"/>
+    <text x="178" y="48" class="small">z</text><text x="265" y="135" class="small">x</text><text x="95" y="210" class="small">y</text>
+  </g>
+  <g transform="translate(70 82)">
+    <rect x="0" y="0" width="125" height="34" rx="17" fill="#7fffd4"/>
+    <text x="18" y="23" class="tag">6-DoF UAV</text>
+    <text x="0" y="88" class="title">Omnicopter Control</text>
+    <text x="0" y="126" class="sub">Optimal control · Robust control · Fault diagnosis · Fault-tolerant allocation</text>
+    <text x="0" y="178" class="small">A research platform for fully-actuated aerial vehicles that can move without tilting and hover at arbitrary attitude.</text>
+    <g transform="translate(0 224)">
+      <rect x="0" y="0" width="164" height="70" rx="16" fill="#ffffff" opacity="0.09" stroke="#6ddcff"/>
+      <text x="22" y="30" class="small">FORCE</text><text x="22" y="54" class="small">3 axes</text>
+      <rect x="184" y="0" width="164" height="70" rx="16" fill="#ffffff" opacity="0.09" stroke="#6ddcff"/>
+      <text x="206" y="30" class="small">TORQUE</text><text x="206" y="54" class="small">3 axes</text>
+      <rect x="368" y="0" width="164" height="70" rx="16" fill="#ffffff" opacity="0.09" stroke="#6ddcff"/>
+      <text x="390" y="30" class="small">HARDWARE</text><text x="390" y="54" class="small">Built + tested</text>
+      <rect x="552" y="0" width="164" height="70" rx="16" fill="#ffffff" opacity="0.09" stroke="#6ddcff"/>
+      <text x="574" y="30" class="small">NEXT</text><text x="574" y="54" class="small">OC / RC / FTC</text>
+    </g>
+  </g>
+</svg>
