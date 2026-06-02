@@ -61,8 +61,6 @@ An Omnicopter is not just “a drone with more propellers”. It is a **fully-ac
 
 ## 🎬 Media Gallery
 
-GitHub README files do not render YouTube `<iframe>` embeds reliably, so videos are inserted using **clickable thumbnails**. Click any thumbnail to watch the video.
-
 <table>
 <tr>
 <td width="50%" align="center">
@@ -108,7 +106,7 @@ GitHub README files do not render YouTube `<iframe>` embeds reliably, so videos 
 
 ### 📸 Our hardware evidence slots
 
-Replace the placeholder images below with real photos or thumbnails from our platform.
+We have built such a system in last summer SEP, this project was awarded as FISRT price in 2025 UG student research showcase
 
 <table>
 <tr>
